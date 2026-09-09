@@ -235,9 +235,16 @@ Provides a concise overview of the business problem, methodology, results, and b
 
 ---
 
-## How to Run the Project
+## How to View the Project
 
-1. Clone this repository:
+Open `SupplyChain_Analysis.ipynb` to view the complete Python analysis, including data cleaning, exploratory analysis, feature engineering, machine learning models, model evaluation, and business recommendations.
 
-```bash
-git clone https://github.com/reechardibrahim147/Supply-Chain-Late-Delivery-Risk-Prediction-Using-Machine-Learning.git
+The notebook was developed using Python, Pandas, NumPy, Matplotlib, Seaborn, and Scikit-learn.
+
+## Author
+
+**Richard Ibrahim**
+
+Data & Business Analytics Portfolio
+
+[GitHub Profile](https://github.com/reechardibrahim147)
