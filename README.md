@@ -4,19 +4,34 @@
 
 Late deliveries can increase operating costs, reduce customer satisfaction, and create challenges for supply chain teams trying to manage orders proactively.
 
-This project analyzes a large supply chain dataset to identify the factors associated with late deliveries and develop a machine learning model capable of flagging orders that are at risk of arriving late.
+In this project, I used **Python and machine learning** to analyze a large supply chain dataset, identify factors associated with late deliveries, and develop a classification model capable of flagging orders at risk of delay.
 
-The analysis was completed in Python and covers the full workflow from data cleaning and exploratory analysis through feature engineering, model development, evaluation, and business recommendations.
+The project covers the complete analytics workflow:
+
+**Data Cleaning → Exploratory Data Analysis → Feature Engineering → Feature Selection → Machine Learning → Model Evaluation → Business Recommendations**
+
+---
+
+## Key Results
+
+- Analyzed approximately **180,519 supply chain records**
+- Worked with **53 original features**
+- Cleaned and prepared the dataset for analysis and machine learning
+- Compared **Logistic Regression, Random Forest, and Decision Tree** classifiers
+- Random Forest achieved approximately **70.6% accuracy**
+- Random Forest achieved the highest recall at approximately **69.1%**
+- The selected model can identify roughly **7 out of 10 actual late deliveries**
+- Recommended Random Forest as the preferred model for proactive delivery-risk identification
 
 ---
 
 ## Business Problem
 
-The objective of this project was to answer the following question:
+The main business question was:
 
-**Can historical order, customer, shipping, and product information be used to identify orders that are at risk of late delivery before the delay occurs?**
+> **Can historical order, customer, shipping, and product information be used to identify orders at risk of late delivery before the delay occurs?**
 
-A useful predictive model could help supply chain teams:
+A reliable prediction model could help supply chain teams:
 
 - Identify high-risk orders earlier
 - Prioritize orders requiring intervention
@@ -28,106 +43,99 @@ A useful predictive model could help supply chain teams:
 
 ## Dataset
 
-The original DataCo Supply Chain dataset contained approximately:
+The original supply chain dataset contained approximately:
 
 - **180,519 records**
 - **53 original features**
 
-Following data cleaning, feature selection, and removal of variables that were not required for the analysis, the analytical dataset contained **22 variables**.
+The data included information relating to:
 
-The dataset includes information related to:
-
-- Customer characteristics
-- Customer segments and locations
-- Markets and order regions
-- Product and order values
-- Discounts and quantities
+- Customer segments
+- Customer locations
+- Markets and regions
 - Shipping modes
 - Scheduled shipment times
-- Order dates
-- Late delivery risk
+- Product prices
+- Order quantities
+- Discounts
+- Order values
+- Delivery performance
+
+Following cleaning, preprocessing, and feature selection, the analytical dataset was reduced to the variables most relevant to the analysis.
+
+The target variable was:
+
+**`Late_delivery_risk`**
 
 ---
 
 ## Tools & Technologies
 
-- **Python**
-- **Pandas** – data manipulation and cleaning
-- **NumPy** – numerical operations
-- **Matplotlib** – data visualization
-- **Seaborn** – exploratory visualizations
-- **Scikit-learn** – preprocessing, feature selection and machine learning
-- **Jupyter Notebook** – development environment
+| Tool | Purpose |
+|---|---|
+| Python | Core analysis and modelling |
+| Pandas | Data cleaning and manipulation |
+| NumPy | Numerical operations |
+| Matplotlib | Data visualization |
+| Seaborn | Exploratory data visualization |
+| Scikit-learn | Preprocessing, feature selection and machine learning |
+| Jupyter Notebook | Analysis environment |
 
 ---
 
-## Project Workflow
-
-### 1. Data Understanding
-
-The dataset was initially explored to understand:
-
-- Dataset dimensions
-- Column types
-- Missing values
-- Duplicate records
-- Numerical and categorical features
-- Distribution of the target variable
-
-The target variable for the analysis was:
-
-**Late_delivery_risk**
-
-where the objective was to distinguish between orders at risk of late delivery and those not at risk.
-
----
-
-### 2. Data Cleaning & Preprocessing
+## Data Cleaning & Preparation
 
 The preprocessing stage included:
 
+- Inspecting dataset structure and data types
 - Reviewing missing values
 - Checking duplicate records
-- Removing unnecessary or noisy variables
-- Reviewing categorical values for inconsistencies
-- Preparing numerical and categorical features
-- Creating time-based features for analysis
-- Exporting the cleaned dataset for further analysis
+- Examining categorical values for inconsistencies
+- Removing unnecessary variables
+- Separating numerical and categorical features
+- Creating time-related variables
+- Preparing the cleaned dataset for analysis
 
-Categorical variables were converted into numerical form using Scikit-learn's `LabelEncoder` to prepare the data for correlation analysis and machine learning.
+Categorical variables were converted into numerical format using **LabelEncoder** so they could be used in correlation analysis and machine learning models.
+
+The cleaned dataset was also exported for use in subsequent stages of the project.
 
 ---
 
-### 3. Exploratory Data Analysis
+## Exploratory Data Analysis
 
-Exploratory analysis was conducted to better understand the factors associated with delivery performance.
+Exploratory analysis was used to understand patterns associated with late delivery risk.
 
 Areas investigated included:
 
-- Shipping mode
-- Customer segment
+- Shipping modes
+- Customer segments
 - Geographic markets
 - Scheduled shipping days
 - Product and order characteristics
 - Late versus on-time delivery patterns
 
-One finding from the analysis was that **shipping mode showed a meaningful relationship with late-delivery risk**, indicating that delivery performance varied across shipping methods.
+The analysis indicated that **shipping mode was an important factor associated with late-delivery risk**, suggesting that delivery performance varied across shipping methods.
 
 ---
 
-### 4. Correlation & Feature Selection
+## Feature Engineering & Selection
 
-A correlation analysis was performed after categorical variables were encoded.
+After categorical variables were encoded, I performed correlation analysis to examine relationships between the available features and late delivery risk.
 
-Feature selection techniques were then used to identify variables with stronger predictive relationships with late-delivery risk.
+I also used:
 
-`SelectKBest` with the `f_classif` scoring method was also used to evaluate feature importance and reduce unnecessary noise in the modelling process.
+**`SelectKBest` with the `f_classif` scoring method**
+
+to identify features with stronger relationships to the target variable.
+
+Feature selection helped reduce unnecessary noise and create a more focused modelling dataset.
 
 ---
 
 ## Machine Learning Models
 
-Three classification algorithms were developed and compared:
+Three classification models were developed and compared:
 
 1. **Logistic Regression**
 2. **Random Forest Classifier**
@@ -139,7 +147,7 @@ The models were evaluated using:
 - Precision
 - Recall
 
-Recall was particularly important for this business problem because failing to identify an order that will actually arrive late may prevent the business from intervening before the customer is affected.
+For this business problem, **recall was particularly important** because missing an order that will actually arrive late can prevent the business from taking corrective action before the customer is affected.
 
 ---
 
@@ -151,72 +159,85 @@ Recall was particularly important for this business problem because failing to i
 | Random Forest | 70.64% | 75.17% | **69.07%** |
 | Decision Tree | 70.66% | 77.11% | 65.82% |
 
-Although the Decision Tree produced a marginally higher accuracy score, the **Random Forest Classifier was selected as the preferred model** because it provided the strongest balance between precision and recall.
-
-Most importantly, it achieved the **highest recall**, allowing it to identify approximately 7 out of every 10 actual late deliveries.
-
 ---
 
 ## Recommended Model
 
 ### Random Forest Classifier
 
-The Random Forest model achieved approximately:
+Although the Decision Tree achieved marginally higher overall accuracy, the **Random Forest Classifier** provided the strongest balance between precision and recall.
 
-- **70.6% accuracy**
-- **75.2% precision**
-- **69.1% recall**
+Random Forest achieved approximately:
 
-For this business problem, the higher recall makes the model particularly useful because identifying potentially late orders is more valuable than simply maximizing overall accuracy.
+- **70.6% Accuracy**
+- **75.2% Precision**
+- **69.1% Recall**
+
+The higher recall means the model successfully identifies approximately **7 out of every 10 actual late deliveries**.
+
+For a supply chain operation, this is particularly valuable because identifying potentially delayed orders early allows teams to intervene before the issue reaches the customer.
 
 ---
 
-## Business Impact
+## Business Recommendations
 
-A model like this could support supply chain operations by helping teams:
+The analysis suggests that a late-delivery prediction model could be used to:
 
 - Flag high-risk orders for priority handling
-- Notify customers proactively when delays are likely
-- Review and optimize shipping-mode selection
-- Allocate operational resources toward orders requiring attention
-- Improve overall delivery performance
+- Notify customers proactively about potential delays
+- Review shipping-mode selection for high-risk orders
+- Allocate operational resources to orders requiring intervention
+- Support delivery-performance monitoring
+- Improve overall customer experience
 
-The model should be viewed as a decision-support tool rather than a replacement for operational judgment.
+The model should be used as a **decision-support tool** alongside operational judgment.
 
 ---
 
-## Key Takeaways
+## Skills Demonstrated
 
-This project demonstrates my ability to:
+This project demonstrates practical experience in:
 
-- Clean and preprocess large datasets using Python
-- Perform exploratory data analysis
-- Translate business problems into analytical questions
-- Work with numerical and categorical variables
-- Conduct correlation and feature-selection analysis
-- Build classification models using Scikit-learn
-- Compare models using appropriate performance metrics
-- Translate model results into practical business recommendations
+- Python for data analytics
+- Data cleaning and preprocessing
+- Exploratory data analysis
+- Data visualization
+- Feature engineering
+- Categorical encoding
+- Correlation analysis
+- Feature selection
+- Classification modelling
+- Model evaluation
+- Business problem solving
+- Translating analytical results into business recommendations
 
 ---
 
 ## Repository Contents
 
-`SupplyChain_Analysis.ipynb`
+### `SupplyChain_Analysis.ipynb`
 
-The Jupyter Notebook contains the complete analysis, including data preparation, exploratory analysis, visualizations, feature engineering, modelling, evaluation, and conclusions.
+Contains the full Python analysis, including:
 
-`README.md`
+- Data preparation
+- Data cleaning
+- Exploratory analysis
+- Visualizations
+- Feature engineering
+- Feature selection
+- Machine learning models
+- Model comparison
+- Conclusions and recommendations
 
-Provides an overview of the business problem, methodology, results, and business implications.
+### `README.md`
+
+Provides a concise overview of the business problem, methodology, results, and business implications.
 
 ---
 
 ## How to Run the Project
 
-1. Clone this repository.
-2. Open `SupplyChain_Analysis.ipynb` in Jupyter Notebook or JupyterLab.
-3. Ensure the required Python libraries are installed:
+1. Clone this repository:
 
 ```bash
-pip install pandas numpy matplotlib seaborn scikit-learn
+git clone https://github.com/reechardibrahim147/Supply-Chain-Late-Delivery-Risk-Prediction-Using-Machine-Learning.git
